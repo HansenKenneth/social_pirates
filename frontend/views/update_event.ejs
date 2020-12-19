@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Social Pirat / Home</title>
+    <title><%= title %></title>
+
     <link rel="shortcut icon" href="img/favicon.ico">
 	<!-- Bootstrap 4.5 CSS -->
 	<link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -13,15 +11,15 @@
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">   
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
           integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    
 </head>
 <body>
-
     <div class="container"><a href="/">
 		<img src="https://upload.wikimedia.org/wikipedia/commons/7/71/Piratey%2C_vector_version.svg" width="10%" height="10%" style="float: left;" alt="Pirate Image" />
 	   </a>
@@ -53,6 +51,7 @@
 
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a href="/home" class="nav-link">Forside</a></li>
                 <li class="nav-item"><a href="/events" class="nav-link">Events</a></li>
                 <li class="nav-item"><a href="/pirates_page" class="nav-link">Pirater</a></li>
                 <a href="/logout" class="btn btn-danger" role="button" aria-pressed="true">Log ud </a>
@@ -60,61 +59,37 @@
         </div>
     </div>
 </nav>
+<div class="top-bar">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="col-md-6 col-sm-12">
+                    <h1><br><br></h1>
+                        <h1><%= title %></h1>
+                        <div class="container">
+                            <form action="/updateEvent" method="post">
+                                <input type="hidden" value="<%= event.id %>" name="id">
 
-<!-- Collums-->
-<section>
-    <div class="container py-5">
-        <div class="row text-center align-items-end">
-            <!-- Arr Ya Comming collums-->
-            <!-- Pirates on board! -->
-
-            <div class="col-lg-6 mb-5 mb-lg-0">
-                <a href="#" class="btn btn-success btn-block p-2 shadow rounded-pill">Pirate On Board!</a>
-                <br>
-                <div class="bg-white p-5 rounded-lg shadow">
-                    <br>
-                    <h4 class="h4 font-weight-bold">Pirates on the ship: </h4>
-
-                    <div class="custom-separator my-4 mx-auto bg-primary"></div>
-
-                    <h6>Liste her med medlemmer/frivillige som ikke kommer</h6>
+                                <div class="form-group">
+                                    <label for="event_name">Event navn:</label>
+                                    <input type="text" class="form-control" id="event_name" placeholder="navn" value="<%= event.event_name %>" name="event_name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="event_date">Event dato:</label>
+                                    <input type="date" class="form-control" id="event_date" placeholder="dato" value="<%= event.event_date %>" name="event_date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="event_time">Event tidspunkt:</label>
+                                    <input type="time" class="form-control" id="event_time" placeholder="tidspunkt" value="<%= event.event_time %>" name="event_time" required>
+                                </div>
+                                <button type="submit" class="btn btn-success">Opdater!</button>
+                                <a href="/events" class="btn btn-danger" role="button" aria-pressed="true">Tilbage!</a>
+                            </form>
+                </div>
                 </div>
             </div>
-            <!-- END -->
-
-
-            <!-- Arr Ya Comming collums! !-->
-
-            <!-- Pirate on board-->
-            <div class="col-lg-6 mb-5 mb-lg-0">
-                <a href="#" class="btn btn-warning btn-block p-2 shadow rounded-pill">Pirate Off-Board!</a>
-                <br>
-                <div class="bg-white p-5 rounded-lg shadow">
-                    <br>
-                    <h4 class="h4 font-weight-bold">Pirates in the water: </h4>
-                    <div class="custom-separator my-4 mx-auto bg-primary"></div>
-                    <h6>Liste her med medlemmer/frivillige som ikke kommer</h6>
-                </div>
-            </div>
-        </section>
-
-
-            <!-- END -->
-
-
-<!-- Chat window! -->
-<section>
-    <div class="container py-5">
-        <div class="row text-center align-items-end">
-            <div class="col-lg-6 mb-5 mb-lg-0"></div>
-                <div class="bg-white p-5 rounded-lg shadow">
-                    <h4 class="h4 font-weight-bold">Ohøj pirat, hop ombord i chatten!</h4>
-                        <iframe class="chat-box" src="https://nodejs-exam-fun-chat.herokuapp.com/"></iframe>
-                    </div>
-         </div>
+        </div>
     </div>
 </div>
-</div>
-</section>
 </body>
 </html>
